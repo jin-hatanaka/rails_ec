@@ -1,10 +1,10 @@
 # README
 
-課題用のrailsテンプレートです。
+課題用の rails テンプレートです。
 
 ## 前提
 
-- dockerが必要です。
+- docker が必要です。
 
 ## setup
 
@@ -15,7 +15,6 @@ docker compose build
 ```
 docker compose run --rm web bin/setup
 ```
-
 
 ```
 docker compose run --rm web yarn install
@@ -31,12 +30,12 @@ http://localhost:3000
 
 ## 備考
 
-- Taskのscaffoldが含まれていますが、CIの動作確認用です。
-適宜削除いただければと思います。（そのままでも問題ないです）
+- Task の scaffold が含まれていますが、CI の動作確認用です。
+  適宜削除いただければと思います。（そのままでも問題ないです）
 
 ## rubocop
 
-rubocopがすべて通ってからレビュー依頼を出してください。
+rubocop がすべて通ってからレビュー依頼を出してください。
 
 auto correct
 
@@ -46,7 +45,7 @@ docker compose run --rm web bundle exec rubocop -A
 
 ## htmlbeautifier
 
-erbのフォーマッターです。
+erb のフォーマッターです。
 フォーマッターを通してからレビュー依頼を出してください。
 
 ```
