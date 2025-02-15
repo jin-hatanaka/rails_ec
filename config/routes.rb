@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'products#index'
   resources :products, only: [:show]
-  
+
   namespace :admin do
     resources :products
   end
