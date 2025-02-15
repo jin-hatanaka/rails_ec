@@ -15,7 +15,10 @@ services:
       - bundle:/usr/local/bundle
       - node_modules:/myapp/node_modules
     ports:
-      - "3000:3000"
+      - '3000:3000'
+    environment:
+      BASIC_AUTH_USER: ${BASIC_AUTH_USER}
+      BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD}
     depends_on:
       - db
   js:

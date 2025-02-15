@@ -30,7 +30,7 @@
         <div class="col mb-5">
           <div class="card h-100">
             <!-- Product image-->
-            <%= link_to image_tag(related_product.image, class: "card-img-top"), product_path(related_product) %>
+            <%= link_to image_tag(related_product.image.variant(resize_to_fill: [450, 300]), class: "card-img-top"), product_path(related_product) %>
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
