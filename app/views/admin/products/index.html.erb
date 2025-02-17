@@ -1,0 +1,35 @@
+<div class="container text-center d-flex flex-column">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-start">
+        <h1 class="mt-2 mb-2 pull-left">商品一覧</h1>
+      </div>
+      <div class="d-flex justify-content-start">
+        <%= link_to "新規登録", new_admin_product_path, class: "btn btn-primary mb-4 pull-left" %>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">商品名</th>
+            <th scope="col">値段</th>
+            <th scope="col">登録日時</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td><%= product.name %></td>
+              <td><%= product.price %></td>
+              <td><%= product.created_at.to_fs(:datetime_jp) %></td>
+              <td>
+                <%= link_to "編集", edit_admin_product_path(product), class: "btn btn-primary me-2" %>
+                <%= link_to '削除', admin_product_path(product), data: { turbo_method: :delete, turbo_confirm: "商品「#{product.name}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
