@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'carts/index'
   namespace :admin do
     get 'products/index'
     get 'products/show'
@@ -20,4 +21,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products
   end
+
+  resources :carts, only: [:index]
+
+  resources :cart_items, only: %i[create destroy]
 end
