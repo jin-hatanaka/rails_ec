@@ -11,11 +11,13 @@
         </div>
         <p class="lead"><%= @product.description %></p>
         <div class="d-flex">
-          <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-          <button class="btn btn-outline-dark flex-shrink-0" type="button">
-            <i class="bi-cart-fill me-1"></i>
-            カートに入れる
-          </button>
+          <%= form_with url: cart_items_path do |f|  %>
+            <%= f.text_field :quantity, class: "form-control text-center me-3", value: "1", style: "max-width: 3rem" %>
+            <%= button_to cart_items_path, { params: {product_id: @product.id}, class: "btn btn-outline-dark mt-auto" } do %>
+              <i class="bi-cart-fill me-1"></i>
+              カートに入れる
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
