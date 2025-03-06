@@ -1,44 +1,49 @@
-class Admin::OrdersController < ApplicationController
-  before_action :basic_auth
+# frozen_string_literal: true
 
-  def index
-    @orders = Order.all
-  end
+module Admin
+  class OrdersController < ApplicationController
+    before_action :basic_auth
 
-  def show
-    @order = Order.find(params[:id])
-    @order_details = @order.order_details
-  end
-
-  def create
-    @order = Order.new(order_params)
-    ApplicationRecord.transaction do
-    @order.save!
-    @cart_items = @cart.cart_items
-    @cart_items.each do |cart_item|
-      create_order_details(cart_item)
+    def index
+      @orders = Order.all
     end
-    @cart.destroy!
-    reset_session
+
+    def show
+      @order = Order.find(params[:id])
+      @order_details = @order.order_details
     end
-    OrderMailer.complete(@order).deliver_later
-    redirect_to root_path, notice: "ご購入ありがとうございます"
-  end
 
-  private
+    def create
+      @order = Order.new(order_params)
+      ApplicationRecord.transaction do
+        @order.save!
+        @cart_items = @cart.cart_items
+        @cart_items.each do |cart_item|
+          create_order_details(cart_item)
+        end
+        @cart.destroy!
+        reset_session
+      end
+      OrderMailer.complete(@order).deliver_later
+      redirect_to root_path, notice: 'ご購入ありがとうございます'
+    end
 
-  def order_params
-    params.require(:order).permit(:first_name, :last_name, :username, :email, :address1, :address2, :country,
-                                  :state, :zip, :name_on_card, :credit_card_number, :expiration, :cvv)
-  end
+    private
 
-  def create_order_details(cart_item)
-    @order.order_details.create!(product_name: cart_item.product.name, price: cart_item.product.price, quantity: cart_item.quantity)
-  end
+    def order_params
+      params.require(:order).permit(:first_name, :last_name, :username, :email, :address1, :address2, :country,
+                                    :state, :zip, :name_on_card, :credit_card_number, :expiration, :cvv)
+    end
 
-  def basic_auth
+    def create_order_details(cart_item)
+      @order.order_details.create!(product_name: cart_item.product.name, price: cart_item.product.price,
+                                   quantity: cart_item.quantity)
+    end
+
+    def basic_auth
       authenticate_or_request_with_http_basic do |username, password|
         username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
       end
     end
+  end
 end
