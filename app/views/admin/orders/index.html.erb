@@ -1,0 +1,31 @@
+<div class="container text-center d-flex flex-column">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-start">
+        <h1 class="mt-2 mb-2 pull-left">注文履歴</h1>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">注文ID</th>
+            <th scope="col">注文日</th>
+            <th scope="col">お届け先の名前</th>
+            <th>合計金額</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.id %></td>
+              <td><%= order.created_at.to_fs(:datetime_jp) %></td>
+              <td><%= order.last_name %><%= order.first_name %></td>
+              <td>¥<%= order.total %></td>
+              <td><%= link_to "注文の詳細", admin_order_path(order), class: "btn btn-light" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

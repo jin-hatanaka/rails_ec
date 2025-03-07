@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   get 'carts/index'
   namespace :admin do
+    get 'orders/index'
+    get 'orders/show'
     get 'products/index'
     get 'products/show'
     get 'products/new'
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :products
+    resources :orders, only: %i[index show create]
   end
 
   resources :carts, only: [:index]
