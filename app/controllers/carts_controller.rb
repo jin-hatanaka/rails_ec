@@ -7,8 +7,8 @@ class CartsController < ApplicationController
     @cart_items = @cart.cart_items
     @order = Order.new
     @total = @cart.total
-    if session[:promotion_code]
-      @total -= @promotion_code.discount
-    end
+    return unless session[:promotion_code]
+
+    @total -= @promotion_code.discount
   end
 end

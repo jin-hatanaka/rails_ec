@@ -23,13 +23,13 @@
           </li>
         <% end %>
         <% if session[:promotion_code] %>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <div class="text-success">
-            <h6 class="my-0">プロモーションコード</h6>
-            <small><%= @promotion_code.code %></small>
-          </div>
-          <span class="text-success">-¥<%= @promotion_code.discount %></span>
-        </li>
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0">プロモーションコード</h6>
+              <small><%= @promotion_code.code %></small>
+            </div>
+            <span class="text-success">-¥<%= @promotion_code.discount %></span>
+          </li>
         <% end %>
         <li class="list-group-item d-flex justify-content-between">
           <span>合計金額</span>
