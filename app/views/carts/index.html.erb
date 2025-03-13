@@ -22,28 +22,28 @@
             </div>
           </li>
         <% end %>
-        <!--
+        <% if session[:promotion_code] %>
         <li class="list-group-item d-flex justify-content-between bg-light">
           <div class="text-success">
-            <h6 class="my-0">Promo code</h6>
-            <small>EXAMPLECODE</small>
+            <h6 class="my-0">プロモーションコード</h6>
+            <small><%= @promotion_code.code %></small>
           </div>
-          <span class="text-success">-$5</span>
+          <span class="text-success">-¥<%= @promotion_code.discount %></span>
         </li>
-        -->
+        <% end %>
         <li class="list-group-item d-flex justify-content-between">
           <span>合計金額</span>
-          <strong>¥<%= @cart.total %></strong>
+          <strong>¥<%= @total %></strong>
         </li>
       </ul>
-      <form class="card p-2">
+      <%= form_with url: promotion_codes_path, class: "card p-2" do |f| %>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Promo code">
+          <%= f.text_field :code, class: "form-control", placeholder: "プロモーションコード" %>
           <div class="input-group-append">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
+            <%= f.submit "適用", class: "btn btn-secondary" %>
           </div>
         </div>
-      </form>
+      <% end %>
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">お届け先</h4>

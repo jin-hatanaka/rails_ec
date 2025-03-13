@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
       session[:cart_id] = @cart.id
     end
   end
+
+  def set_promotion_code
+    @promotion_code = PromotionCode.find_by(code: session[:promotion_code])
+  end
 end
