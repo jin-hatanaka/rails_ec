@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_28_073752) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_12_054505) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_28_073752) do
     t.integer "cvv", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "discount"
   end
 
   create_table "products", force: :cascade do |t|
@@ -90,6 +91,13 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_28_073752) do
     t.integer "price", null: false
     t.text "description"
     t.string "product_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "promotion_codes", force: :cascade do |t|
+    t.string "code", null: false
+    t.integer "discount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

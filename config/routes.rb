@@ -28,4 +28,6 @@ Rails.application.routes.draw do
   resources :carts, only: [:index]
 
   resources :cart_items, only: %i[create destroy]
+
+  resources :promotion_codes, only: [:create]
 end

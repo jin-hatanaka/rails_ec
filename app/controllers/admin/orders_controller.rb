@@ -3,6 +3,7 @@
 module Admin
   class OrdersController < ApplicationController
     before_action :basic_auth
+    before_action :set_promotion_code
 
     def index
       @orders = Order.all
@@ -22,6 +23,7 @@ module Admin
           create_order_details(cart_item)
         end
         @cart.destroy!
+        @promotion_code.destroy!
         reset_session
       end
       OrderMailer.complete(@order).deliver_later
@@ -32,7 +34,7 @@ module Admin
 
     def order_params
       params.require(:order).permit(:first_name, :last_name, :username, :email, :address1, :address2, :country,
-                                    :state, :zip, :name_on_card, :credit_card_number, :expiration, :cvv)
+                                    :state, :zip, :name_on_card, :credit_card_number, :expiration, :cvv).merge(discount: @promotion_code.discount)
     end
 
     def create_order_details(cart_item)
