@@ -1,53 +1,35 @@
-# README
+## 概要
+本リポジトリは、Ruby on Rails を用いて開発した EC サイトです。
+商品購入機能や管理者機能を含め、実務を想定した基本的な EC サイトの構成を実装しています。
 
-課題用の rails テンプレートです。
+## 使用技術
+- Ruby 3.2.1
+- Rails 7.0.0
+- PostgreSQL 14
+- Bootstrap
+- 開発環境：Docker
+- 本番環境：Heroku
+- 画像保存：Amazon S3
 
-## 前提
+## 機能一覧
+### 商品機能
+- 商品一覧・詳細表示
+- 商品画像の表示
 
-- docker が必要です。
+### 管理者機能
+- Basic 認証による管理者画面へのアクセス制御
+- 商品管理（CRUD）
+- 注文管理
 
-## setup
+### カート・チェックアウト機能
+- カート追加・削除
+- 注文確定処理
+- チェックアウト時に購入明細をメール送信
 
-```
-docker compose build
-```
+### プロモーションコード機能
+- プロモーションコードの適用
+- 割引金額の自動計算
+- 注文金額への反映
 
-```
-docker compose run --rm web bin/setup
-```
-
-```
-docker compose run --rm web yarn install
-```
-
-## run
-
-```
-docker compose up
-```
-
-http://localhost:3000
-
-## 備考
-
-- Task の scaffold が含まれていますが、CI の動作確認用です。
-  適宜削除いただければと思います。（そのままでも問題ないです）
-
-## rubocop
-
-rubocop がすべて通ってからレビュー依頼を出してください。
-
-auto correct
-
-```
-docker compose run --rm web bundle exec rubocop -A
-```
-
-## htmlbeautifier
-
-erb のフォーマッターです。
-フォーマッターを通してからレビュー依頼を出してください。
-
-```
-docker compose run --rm web bin/htmlbeautifier
-```
+## 画面イメージ
+![ec](https://github.com/user-attachments/assets/4ff56d74-5549-4f1c-a607-6d8e023c7c12)
